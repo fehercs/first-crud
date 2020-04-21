@@ -1,7 +1,7 @@
 version: "2"
 services:
-  express-typescript-skeleton-db:
-    container_name: express-typescript-skeleton-db
+  first-crud-db:
+    container_name: first-crud-db
     image: mysql:5.7
     environment:
       MYSQL_DATABASE: "database"
@@ -13,13 +13,13 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - express-typescript-skeleton-db-data:/var/lib/mysql
+      - first-crud-db-data:/var/lib/mysql
     networks:
       inner:
         aliases:
-          - express-typescript-skeleton-db
-  express-typescript-skeleton:
-    container_name: express-typescript-skeleton
+          - first-crud-db
+  first-crud:
+    container_name: first-crud
     build:
       context: ./
       dockerfile: Dockerfile.development
@@ -28,15 +28,15 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - express-typescript-skeleton-db
+      - first-crud-db
     volumes:
       - "./:/usr/src/app"
       - "~/.ssh:/root/.ssh"
     networks:
       inner:
         aliases:
-          - express-typescript-skeleton
+          - first-crud
 networks:
   inner: {}
 volumes:
-  express-typescript-skeleton-db-data: {}
+  first-crud-db-data: {}
