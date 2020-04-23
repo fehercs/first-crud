@@ -5,8 +5,8 @@ import { database } from '../../lib/database';
 //Index
 export const index = async (req: Request, res: Response) => {
   try {
-    const groups: Array<Group> = await database('groups').select();
-    res.json(groups);
+    const group: Array<Group> = await database('groups').select();
+    res.json(group);
   } catch (error) {
     console.error(error);
     res.sendStatus(500);
