@@ -8,9 +8,11 @@ import * as bcrypt from 'bcrypt';
 
 export const create = async (req: Request, res: Response) => {
   try {
+    console.log(res);
     const user: User = await database('users').select().where({
       email: req.body.email
     }).first();
+    console.log(user);
     if (typeof user !== 'undefined' && bcrypt.compareSync(req.body.password, user.password)) {
       const info = { userId: user.id };
       const token = jwt.sign(info, jwtConfig.secret);
