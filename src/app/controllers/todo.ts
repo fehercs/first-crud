@@ -53,5 +53,39 @@ export const create = async (req: Request, res: Response) => {
     res.sendStatus(500);
   }
 };
+
 //Update
+export const update = async (req: Request, res: Response) => {
+  try {
+    const todo: Todo = await database('todos').select().where({ id: req.params.id }).first();
+    if (todo) {
+      const newcategory: Todo = {
+        name: req.body.description,
+        status: req.body.status
+      };
+      await database('todos').update(newcategory).where({ id: req.params.id });
+      res.sendStatus(200);
+    } else {
+      res.sendStatus(404);
+    }
+  } catch (error) {
+    console.error(error);
+    res.sendStatus(500);
+  }
+};
+
 //Destroy
+export const destroy = async (req: Request, res: Response) => {
+  try {
+    const todo: Todo = await database('todos').select().where({ id: req.params.id }).first();
+    if (todo) {
+      await database('todos').delete().where({ id: req.params.id });
+      res.sendStatus(204);
+    } else {
+      res.sendStatus(404);
+    }
+  } catch(error) {
+    console.error(error);
+    res.sendStatus(500);
+  }
+};
