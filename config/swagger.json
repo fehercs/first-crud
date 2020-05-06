@@ -64,7 +64,12 @@
           },
           {
             "in": "query",
-            "name": "q",
+            "name": "limit",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "offset",
             "type": "string"
           }
         ],
@@ -201,7 +206,12 @@
           },
           {
             "in": "query",
-            "name": "q",
+            "name": "limit",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "offset",
             "type": "string"
           }
         ],

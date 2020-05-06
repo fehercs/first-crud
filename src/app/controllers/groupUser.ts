@@ -2,9 +2,17 @@ import { User } from "../models/user";
 import { database } from "../../lib/database";
 import { Request, Response } from "express";
 import * as userSerializer from '../serializers/user'
+import { QueryBuilder } from 'knex';
 
 export const index = async (req: Request, res: Response) => {
-  const users: Array<User> = await database('users').where({ groupID: req.params.groupID }).select();
+  let query: QueryBuilder = database('users').select().where({ groupID: req.params.groupID });
+  if (req.query.limit) {
+    query = query.limit(req.query.limit);
+  }
+  if (req.query.offset) {
+    query = query.offset(req.query.offset);
+  }
+  const users: Array<User> = await query;
   res.json(users);
 };
 

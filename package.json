@@ -9,8 +9,8 @@
     "dev": "concurrently \"webpack -w\" \"nodemon build/bundle.js\"",
     "start": "node build/bundle.js",
     "db:migrate": "node ./node_modules/.bin/knex migrate:up --knexfile=config/database.json",
-    "db:rollback": "node ./node_modules/.bin/knex migrate:rollback --knexfile=config/database",
-    "db:seed": "node ./node_modules/.bin/knex seed:run --knexfile=config/database"
+    "db:rollback": "node ./node_modules/.bin/knex migrate:rollback --knexfile=config/database.json",
+    "db:seed": "node ./node_modules/.bin/knex seed:run --knexfile=config/database.json"
   },
   "devDependencies": {
     "@types/express": "^4.17.2",
